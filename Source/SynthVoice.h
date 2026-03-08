@@ -48,22 +48,22 @@ public:
 	}
 
 	//==============================================================================
-	void setParamPointers ( float* oscAttack,  
-		                    float* oscDecay,
-		                    float* oscFreq,
-		                    float* oscSelection,
-		                    float* oscPitchEnvAmount,
-		                    float* oscPitchEnvRate,
-		                    float* oscPitchLfoAmount,
-		                    float* oscPitchLfoRate,
-		                    float* noiseFilterType,
-		                    float* noiseFilterCutoff,
-		                    float* noiseFilterRes,
-		                    float* noiseAttack,
-		                    float* noiseDecay,
-		                    float* masterMix,
-		                    float* masterDistortionAmount,
-		                    float* masterLevel ) 
+	void setParamPointers ( std::atomic<float>* oscAttack,  
+		                    std::atomic<float>* oscDecay,
+		                    std::atomic<float>* oscFreq,
+		                    std::atomic<float>* oscSelection,
+		                    std::atomic<float>* oscPitchEnvAmount,
+		                    std::atomic<float>* oscPitchEnvRate,
+		                    std::atomic<float>* oscPitchLfoAmount,
+		                    std::atomic<float>* oscPitchLfoRate,
+		                    std::atomic<float>* noiseFilterType,
+		                    std::atomic<float>* noiseFilterCutoff,
+		                    std::atomic<float>* noiseFilterRes,
+		                    std::atomic<float>* noiseAttack,
+		                    std::atomic<float>* noiseDecay,
+		                    std::atomic<float>* masterMix,
+		                    std::atomic<float>* masterDistortionAmount,
+		                    std::atomic<float>* masterLevel ) 
 	{
 		envAttack            = oscAttack;
 		envDecay             = oscDecay;
@@ -320,24 +320,24 @@ private:
  	
 	//==============================================================================
 	// OSC 
-	float* oscWaveform;
-	float* currentNoteFrequency;
-	float* envAttack;
-	float* envDecay;
-	float* pitchEnvAmount;
-	float* pitchEnvRate;
-	float* pitchLfoAmount;
-	float* pitchLfoRate;
+	std::atomic<float>* oscWaveform;
+	std::atomic<float>* currentNoteFrequency;
+	std::atomic<float>* envAttack;
+	std::atomic<float>* envDecay;
+	std::atomic<float>* pitchEnvAmount;
+	std::atomic<float>* pitchEnvRate;
+	std::atomic<float>* pitchLfoAmount;
+	std::atomic<float>* pitchLfoRate;
 
 	// NOISE 
-	float* filterType;
-	float* filterCutoff;
-	float* filterRes;
-	float* noiseEnvAttack; 
-	float* noiseEnvDecay;
+	std::atomic<float>* filterType;
+	std::atomic<float>* filterCutoff;
+	std::atomic<float>* filterRes;
+	std::atomic<float>* noiseEnvAttack; 
+	std::atomic<float>* noiseEnvDecay;
 
 	// MASTER 
-	float* mix; 
-	float* distortionAmount;
-	float* level; 
+	std::atomic<float>* mix; 
+	std::atomic<float>* distortionAmount;
+	std::atomic<float>* level; 
 };
