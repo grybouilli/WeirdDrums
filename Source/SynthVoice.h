@@ -16,6 +16,12 @@
 #include "WhiteNoiseGenerator.h"
 #include "Distortion.h"
 
+#if JUCE_MAJOR_VERSION >= 6
+using juce_float_ptr = std::atomic<float> *;
+#else
+using juce_float_ptr = float *;
+#endif
+
 class SynthVoice : public SynthesiserVoice
 {
 public:
@@ -48,22 +54,22 @@ public:
 	}
 
 	//==============================================================================
-	void setParamPointers ( std::atomic<float>* oscAttack,  
-		                    std::atomic<float>* oscDecay,
-		                    std::atomic<float>* oscFreq,
-		                    std::atomic<float>* oscSelection,
-		                    std::atomic<float>* oscPitchEnvAmount,
-		                    std::atomic<float>* oscPitchEnvRate,
-		                    std::atomic<float>* oscPitchLfoAmount,
-		                    std::atomic<float>* oscPitchLfoRate,
-		                    std::atomic<float>* noiseFilterType,
-		                    std::atomic<float>* noiseFilterCutoff,
-		                    std::atomic<float>* noiseFilterRes,
-		                    std::atomic<float>* noiseAttack,
-		                    std::atomic<float>* noiseDecay,
-		                    std::atomic<float>* masterMix,
-		                    std::atomic<float>* masterDistortionAmount,
-		                    std::atomic<float>* masterLevel ) 
+	void setParamPointers ( juce_float_ptr oscAttack,  
+		                    juce_float_ptr oscDecay,
+		                    juce_float_ptr oscFreq,
+		                    juce_float_ptr oscSelection,
+		                    juce_float_ptr oscPitchEnvAmount,
+		                    juce_float_ptr oscPitchEnvRate,
+		                    juce_float_ptr oscPitchLfoAmount,
+		                    juce_float_ptr oscPitchLfoRate,
+		                    juce_float_ptr noiseFilterType,
+		                    juce_float_ptr noiseFilterCutoff,
+		                    juce_float_ptr noiseFilterRes,
+		                    juce_float_ptr noiseAttack,
+		                    juce_float_ptr noiseDecay,
+		                    juce_float_ptr masterMix,
+		                    juce_float_ptr masterDistortionAmount,
+		                    juce_float_ptr masterLevel ) 
 	{
 		envAttack            = oscAttack;
 		envDecay             = oscDecay;
@@ -320,24 +326,24 @@ private:
  	
 	//==============================================================================
 	// OSC 
-	std::atomic<float>* oscWaveform;
-	std::atomic<float>* currentNoteFrequency;
-	std::atomic<float>* envAttack;
-	std::atomic<float>* envDecay;
-	std::atomic<float>* pitchEnvAmount;
-	std::atomic<float>* pitchEnvRate;
-	std::atomic<float>* pitchLfoAmount;
-	std::atomic<float>* pitchLfoRate;
+	juce_float_ptr oscWaveform;
+	juce_float_ptr currentNoteFrequency;
+	juce_float_ptr envAttack;
+	juce_float_ptr envDecay;
+	juce_float_ptr pitchEnvAmount;
+	juce_float_ptr pitchEnvRate;
+	juce_float_ptr pitchLfoAmount;
+	juce_float_ptr pitchLfoRate;
 
 	// NOISE 
-	std::atomic<float>* filterType;
-	std::atomic<float>* filterCutoff;
-	std::atomic<float>* filterRes;
-	std::atomic<float>* noiseEnvAttack; 
-	std::atomic<float>* noiseEnvDecay;
+	juce_float_ptr filterType;
+	juce_float_ptr filterCutoff;
+	juce_float_ptr filterRes;
+	juce_float_ptr noiseEnvAttack; 
+	juce_float_ptr noiseEnvDecay;
 
 	// MASTER 
-	std::atomic<float>* mix; 
-	std::atomic<float>* distortionAmount;
-	std::atomic<float>* level; 
+	juce_float_ptr mix; 
+	juce_float_ptr distortionAmount;
+	juce_float_ptr level; 
 };
