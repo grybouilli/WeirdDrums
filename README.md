@@ -20,11 +20,38 @@ Audio examples (more to come!):
 Coming soon!
 
 ## How to build
-
+### With Projucer
 There are no external dependencies apart from the JUCE framework. 
 You should be able to build the project using the usual JUCE/projucer workflow (i.e. open the `.jucer` files with the Projucer and take it from there). 
 
 At some point I will update this `README` with more detailed instructions. In the meanwhile, please feel free to drop me a line if you have trouble building. 
+
+### With CMake
+#### Dependencies
+
+Ubuntu / Debian :
+```bash
+sudo apt install build-essential git cmake \
+  libasound2-dev libfreetype6-dev \
+  libx11-dev libxinerama-dev libxext-dev \
+  libxrandr-dev libxcursor-dev
+```
+
+Fedora / CentOS / RHEL :
+```bash
+sudo dnf install gcc-c++ git cmake \
+  alsa-lib-devel freetype-devel \
+  libX11-devel libXinerama-devel libXext-devel \
+  libXrandr-devel libXcursor-devel
+```
+
+If you do not have a JUCE installation or do not know how to use Projucer, you can build this project simply using cmake. The CMakeLists.txt in this repo will fetch a version of JUCE for the project.
+Simply type :
+
+```bash
+cmake -B build [-G<build_system>] .
+cmake --build build
+```
 
 ## Architecture / how to use
 
